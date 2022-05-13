@@ -1,6 +1,7 @@
 package com.brandmaker.bochkarev.aleksei.demoqa;
 
 import com.codeborne.selenide.Configuration;
+import config.BaseSetup;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -9,13 +10,9 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
-public class TextBoxTests {
+public class TextBoxTests extends BaseSetup {
 
-    @BeforeAll
-    static void setUp() {
-        Configuration.holdBrowserOpen = false;
-        Configuration.baseUrl = "https://demoqa.com";
-    }
+
 
     @Test
     void fillFormTest () {
