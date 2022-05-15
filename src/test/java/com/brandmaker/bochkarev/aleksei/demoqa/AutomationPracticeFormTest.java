@@ -3,10 +3,10 @@ package com.brandmaker.bochkarev.aleksei.demoqa;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import config.BaseSetup;
-import config.ToolsForTests;
+import org.junit.jupiter.api.Disabled;
+import utils.ToolsForTests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -18,7 +18,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
-public class AutomationPracticeForm extends BaseSetup {
+public class AutomationPracticeFormTest extends BaseSetup {
     enum Gender {
         Male,
         Female,
@@ -29,11 +29,14 @@ public class AutomationPracticeForm extends BaseSetup {
     void openPage() {
         open("/automation-practice-form");
         getWebDriver().manage().window().maximize();
+        executeJavaScript("$('footer').remove()");
+        executeJavaScript("$('#fixedban').remove()");
     }
 
     @Test
+    @Disabled ("we have new improved test")
     void homeFormsTest() {
-        /*** Test Data ***/
+        /** Test Data **/
         String name = ToolsForTests.getRandomString(8, true, false);
         String lastName = ToolsForTests.getRandomString(9, true, false);
         String email = ToolsForTests.getRandomString(7, true, true) +
@@ -61,7 +64,7 @@ public class AutomationPracticeForm extends BaseSetup {
         elementsJustForClick.add(stateCity.$(byText("Select City")));
         elementsJustForClick.add(stateCity.$(byText(city)));
 
-        /*** Test Actions ***/
+        /** Test Actions **/
         $("input#firstName").setValue(name);
         $("input#lastName").setValue(lastName);
         $("input#userEmail").setValue(email);
@@ -82,7 +85,7 @@ public class AutomationPracticeForm extends BaseSetup {
             elementJustForClick.shouldBe(Condition.visible, Duration.ofMillis(WAITING_TIMEOUT)).click();
         }
         $("#submit").click();
-        /*** Asserts ***/
+        /** Asserts ***/
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
         $(".modal-body").shouldHave(
                 text(name + " " + lastName),

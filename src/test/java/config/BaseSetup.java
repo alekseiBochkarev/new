@@ -7,7 +7,8 @@ public class BaseSetup {
     public static final long WAITING_TIMEOUT = 10000;
     @BeforeAll
     static void setUp() {
-        Configuration.holdBrowserOpen = true;
+        Configuration.holdBrowserOpen = false;
         Configuration.baseUrl = "https://demoqa.com";
+        //Configuration.browserSize = "1920x1080";
     }
 }
