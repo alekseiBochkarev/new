@@ -26,13 +26,13 @@ public class AutomationPracticeForm extends BaseSetup {
     }
 
     @BeforeEach
-    void openPage () {
+    void openPage() {
         open("/automation-practice-form");
         getWebDriver().manage().window().maximize();
     }
 
     @Test
-    void homeFormsTest () {
+    void homeFormsTest() {
         /*** Test Data ***/
         String name = ToolsForTests.getRandomString(8, true, false);
         String lastName = ToolsForTests.getRandomString(9, true, false);
@@ -65,15 +65,15 @@ public class AutomationPracticeForm extends BaseSetup {
         $("input#firstName").setValue(name);
         $("input#lastName").setValue(lastName);
         $("input#userEmail").setValue(email);
-        $x("//input[@name='gender' and @value='"+gender+"']/following-sibling::label").click();
+        $x("//input[@name='gender' and @value='" + gender + "']/following-sibling::label").click();
         $("input[id=userNumber]").setValue(mobilePhone);
         //set date of birth
         $("input[id=dateOfBirthInput]").click();
         $("select.react-datepicker__month-select").selectOption(month);
         $("select.react-datepicker__year-select").selectOption(String.valueOf(birth.getYear()));
-        $x("//*[contains(@aria-label, '" + month +"')]" +
-                "[contains(@aria-label, '" + birth.getDayOfMonth() +"')]" +
-                "[contains(@aria-label, '" + birth.getYear() +"')]").click();
+        $x("//*[contains(@aria-label, '" + month + "')]" +
+                "[contains(@aria-label, '" + birth.getDayOfMonth() + "')]" +
+                "[contains(@aria-label, '" + birth.getYear() + "')]").click();
         $("#subjectsInput").setValue(subject).pressEnter();
         $("#hobbiesWrapper").$(byText(hobby)).click();
         $("#uploadPicture").uploadFromClasspath(imgPath);
