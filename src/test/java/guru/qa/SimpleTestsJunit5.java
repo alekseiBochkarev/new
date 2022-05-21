@@ -1,4 +1,4 @@
-package com.brandmaker.bochkarev.aleksei;
+package guru.qa;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;

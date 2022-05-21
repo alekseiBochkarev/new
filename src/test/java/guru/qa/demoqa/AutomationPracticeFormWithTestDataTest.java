@@ -1,4 +1,4 @@
-package com.brandmaker.bochkarev.aleksei.demoqa;
+package guru.qa.demoqa;
 
 import com.github.javafaker.Faker;
 import config.BaseSetup;

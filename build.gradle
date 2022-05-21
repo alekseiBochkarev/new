@@ -1,19 +1,42 @@
 plugins {
     id 'java-library'
+    id "io.qameta.allure" version "2.9.6"
 }
 
 repositories {
     mavenCentral()
 }
 
+def junitVersion = "5.8.2",
+        slf4jVersion = "1.7.36",
+        javafakerVersion = "1.0.2",
+        selenideVersion = "6.4.0",
+        allureVersion = "2.18.0"
+
 dependencies {
     testImplementation (
-            "com.codeborne:selenide:6.4.0",
-            "com.github.javafaker:javafaker:1.0.2",
-            "org.junit.jupiter:junit-jupiter:5.8.2",
-            "org.slf4j:slf4j-simple:1.7.36"
+            "com.codeborne:selenide:$selenideVersion",
+            "com.github.javafaker:javafaker:$javafakerVersion",
+            "io.qameta.allure:allure-selenide:$allureVersion",
+            "org.junit.jupiter:junit-jupiter:$junitVersion",
+            "org.slf4j:slf4j-simple:$slf4jVersion"
     )
 }
+allure {
+    report {
+        version.set("$allureVersion")
+    }
+    adapter {
+        aspectjWeaver.set(true)
+        frameworks {
+            junit5 {
+                adapterVersion.set("$allureVersion")
+            }
+        }
+    }
+}
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+tasks.withType(Javadoc) { options.encoding = 'UTF-8' }
 
 test {
     useJUnitPlatform()

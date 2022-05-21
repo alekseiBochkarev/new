@@ -1,4 +1,4 @@
-package com.brandmaker.bochkarev.aleksei.demoqa;
+package guru.qa.demoqa;
 
 import com.codeborne.selenide.Configuration;
 import config.BaseSetup;

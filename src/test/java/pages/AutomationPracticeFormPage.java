@@ -1,6 +1,6 @@
 package pages;
 
-import com.brandmaker.bochkarev.aleksei.demoqa.AutomationPracticeFormWithTestDataTest;
+import guru.qa.demoqa.AutomationPracticeFormWithTestDataTest;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
