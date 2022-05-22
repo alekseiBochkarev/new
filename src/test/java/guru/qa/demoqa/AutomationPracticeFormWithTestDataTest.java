@@ -2,17 +2,22 @@ package guru.qa.demoqa;
 
 import com.github.javafaker.Faker;
 import config.BaseSetup;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import helpers.Attach;
+import io.qameta.allure.Owner;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import org.junit.jupiter.api.*;
 import pages.AutomationPracticeFormPage;
 import utils.ToolsForTests;
 
 import java.time.LocalDate;
 import java.util.Locale;
 
+import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static io.qameta.allure.Allure.step;
 import static java.lang.String.format;
 
+@Tag("demoqa")
 public class AutomationPracticeFormWithTestDataTest extends BaseSetup {
     /** Pages **/
     AutomationPracticeFormPage automationPracticeFormPage = new AutomationPracticeFormPage();
@@ -22,6 +27,39 @@ public class AutomationPracticeFormWithTestDataTest extends BaseSetup {
         Female,
         Other
     }
+
+    @BeforeEach
+    void openPage() {
+        step("open registration form", () -> {
+            automationPracticeFormPage.openPage();
+        });
+    }
+
+    @AfterEach
+    void addAttachments() {
+        Attach.screenshoatAs("last screenshot");
+        Attach.pageSource();
+        Attach.browserConsoleLogs();
+        Attach.pageHtml();
+        Attach.addVideo();
+        closeWebDriver();
+    }
+
+    @Test
+    @Owner("AlekseiBochkarev")
+    @Severity(SeverityLevel.BLOCKER)
+    @DisplayName("successful fill registration form")
+    void homeFormsTest() {
+        TestDataForAPForm testDataForAPForm = new TestDataForAPForm();
+        step("fill registration form", () -> {
+            automationPracticeFormPage.fillForm(testDataForAPForm);
+        });
+        /** Asserts **/
+        step("verify form data", () -> {
+            automationPracticeFormPage.checkFormOfResult(testDataForAPForm);
+        });
+    }
+
     public class TestDataForAPForm {
         Faker faker = new Faker(new Locale("en"));
         String name = faker.name().firstName();
@@ -109,24 +147,5 @@ public class AutomationPracticeFormWithTestDataTest extends BaseSetup {
         public String getCity() {
             return city;
         }
-    }
-
-    @BeforeEach
-    void openPage() {
-        step("open registration form", () -> {
-            automationPracticeFormPage.openPage();
-        });
-    }
-
-    @Test
-    void homeFormsTest() {
-        TestDataForAPForm testDataForAPForm = new TestDataForAPForm();
-        step("fill registration form", () -> {
-            automationPracticeFormPage.fillForm(testDataForAPForm);
-        });
-        /** Asserts **/
-        step("verify form data", () -> {
-            automationPracticeFormPage.checkFormOfResult(testDataForAPForm);
-        });
     }
 }

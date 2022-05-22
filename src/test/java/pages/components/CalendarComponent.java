@@ -8,7 +8,7 @@ public class CalendarComponent {
         $("select.react-datepicker__month-select").selectOption(month);
         $("select.react-datepicker__year-select").selectOption(year);
         $x("//*[contains(@aria-label, '" + month + "')]" +
-                "[contains(@aria-label, '" + day + "')]" +
-                "[contains(@aria-label, '" + year + "')]").click();
+                "[contains(@aria-label, '" + year + "')]" +
+                "[text() ='" + day + "']").click();
     }
 }
