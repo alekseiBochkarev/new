@@ -10,6 +10,7 @@ import utils.ToolsForTests;
 import java.time.LocalDate;
 import java.util.Locale;
 
+import static io.qameta.allure.Allure.step;
 import static java.lang.String.format;
 
 public class AutomationPracticeFormWithTestDataTest extends BaseSetup {
@@ -112,14 +113,20 @@ public class AutomationPracticeFormWithTestDataTest extends BaseSetup {
 
     @BeforeEach
     void openPage() {
-        automationPracticeFormPage.openPage();
+        step("open registration form", () -> {
+            automationPracticeFormPage.openPage();
+        });
     }
 
     @Test
     void homeFormsTest() {
         TestDataForAPForm testDataForAPForm = new TestDataForAPForm();
-        automationPracticeFormPage.fillForm(testDataForAPForm);
+        step("fill registration form", () -> {
+            automationPracticeFormPage.fillForm(testDataForAPForm);
+        });
         /** Asserts **/
-        automationPracticeFormPage.checkFormOfResult(testDataForAPForm);
+        step("verify form data", () -> {
+            automationPracticeFormPage.checkFormOfResult(testDataForAPForm);
+        });
     }
 }
