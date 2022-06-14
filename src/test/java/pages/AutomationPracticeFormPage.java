@@ -35,7 +35,7 @@ public class AutomationPracticeFormPage {
     //actions
     public AutomationPracticeFormPage openPage () {
         open("/automation-practice-form");
-        getWebDriver().manage().window().maximize();
+        //getWebDriver().manage().window().maximize();
         executeJavaScript("$('footer').remove()");
         executeJavaScript("$('#fixedban').remove()");
         return this;
