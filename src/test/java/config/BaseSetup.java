@@ -20,7 +20,7 @@ public class BaseSetup {
         Configuration.holdBrowserOpen = false;
         Configuration.baseUrl = System.getProperty("baseUrl","https://demoqa.com");
         Configuration.browserSize = System.getProperty("browserSize", "1920x1080");;
-        Configuration.remote = "https://" + config.login() + ":" + config.password() + "@" + System.getProperty("selenoidPath","selenoid.autotests.cloud/wd/hub");
+        Configuration.remote = "https://" + config.login() + ":" + config.password() + "@" + System.getProperty("selenoidPath","selenoid.autotests.cloud") + "/wd/hub";
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("enableVNC", true);
