@@ -67,3 +67,9 @@ task test6 (type: Test) {
         includeTags("test6")
     }
 }
+
+task  systemProperties(type: Test) {
+    useJUnitPlatform{
+        includeTags("systemProperties")
+    }
+}
