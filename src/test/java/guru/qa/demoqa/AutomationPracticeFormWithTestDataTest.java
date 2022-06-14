@@ -18,6 +18,7 @@ import static io.qameta.allure.Allure.step;
 import static java.lang.String.format;
 
 @Tag("demoqa")
+@Tag("owner")
 public class AutomationPracticeFormWithTestDataTest extends BaseSetup {
     /** Pages **/
     AutomationPracticeFormPage automationPracticeFormPage = new AutomationPracticeFormPage();

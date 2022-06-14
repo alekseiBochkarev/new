@@ -16,6 +16,7 @@ def junitVersion = "5.8.2",
 dependencies {
     testImplementation (
             "com.codeborne:selenide:$selenideVersion",
+            "org.aeonbits.owner:owner:1.0.12",
             "com.github.javafaker:javafaker:$javafakerVersion",
             "io.qameta.allure:allure-selenide:$allureVersion",
             "org.junit.jupiter:junit-jupiter:$junitVersion",
@@ -71,5 +72,11 @@ task test6 (type: Test) {
 task  systemProperties(type: Test) {
     useJUnitPlatform{
         includeTags("systemProperties")
+    }
+}
+
+task owner(type: Test) {
+    useJUnitPlatform{
+        includeTags "owner"
     }
 }
