@@ -19,6 +19,7 @@ import static java.lang.String.format;
 
 @Tag("demoqa")
 @Tag("owner")
+@Tag("simple")
 public class AutomationPracticeFormWithTestDataTest extends BaseSetup {
     /** Pages **/
     AutomationPracticeFormPage automationPracticeFormPage = new AutomationPracticeFormPage();
